@@ -23,3 +23,6 @@ steps:
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
+  steps:
+- publish: $(System.DefaultWorkingDirectory)/bin/WebApp
+  artifact: WebApp
