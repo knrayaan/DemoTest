@@ -18,9 +18,9 @@ steps:
   inputs:
     solution: '**/*.sln'
     msbuildArchitecture: 'x64'
-- task: DotNetCoreCLI@2
+- task: CopyFiles@2
   inputs:
-    command: 'build'
+    targetFolder: '$(Build.ArtifactStagingDirectory)' 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
