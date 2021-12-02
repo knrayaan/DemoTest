@@ -23,13 +23,10 @@ steps:
   displayName: 'NuGet restore'
   inputs:
     restoreSolution: '$(Parameters.solution)'
-- task: VSBuild@1
-  displayName: Build solution **\*.sln
+- task: MSBuild@1
   inputs:
-    solution: $(BuildParameters.solution)
-    msbuildArgs: /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(Agent.TempDirectory)\WebAppContent\\"
-    platform: $(BuildPlatform)
-    configuration: $(BuildConfiguration)
+    solution: '**/*.sln'
+
 - task: PublishSymbols@2
   displayName: 'Publish symbols path'
   inputs:
