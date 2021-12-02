@@ -24,12 +24,12 @@ steps:
   inputs:
     restoreSolution: '$(Parameters.solution)'
 - task: VSBuild@1
-  displayName: 'Build solution **\*.sln'
+  displayName: Build solution **\*.sln
   inputs:
-    solution: '$(Parameters.solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(Agent.TempDirectory)\WebAppContent\\"'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    solution: $(BuildParameters.solution)
+    msbuildArgs: /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(Agent.TempDirectory)\WebAppContent\\"
+    platform: $(BuildPlatform)
+    configuration: $(BuildConfiguration)
 - task: PublishSymbols@2
   displayName: 'Publish symbols path'
   inputs:
